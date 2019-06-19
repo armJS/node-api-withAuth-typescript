@@ -1,0 +1,33 @@
+{
+  "name": "authserver",
+  "version": "0.0.1",
+  "description": "Simple auth server for notes project",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev --respawn --transpileOnly -r dotenv/config src/server.ts",
+    "prod": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Armen Melkonyan",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^8.0.1",
+    "js-yaml": "^3.13.1",
+    "restify": "^8.3.3",
+    "sequelize": "^5.8.9",
+    "sqlite3": "^4.0.9",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^7.0.0",
+    "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.0.8",
+    "@types/restify": "^7.2.11",
+    "@types/sequelize": "^4.28.3",
+    "@types/sqlite3": "^3.1.5",
+    "@types/winston": "^2.4.4",
+    "dotenv": "^8.0.0",
+    "ts-node-dev": "1.0.0-pre.40",
+    "typescript": "3.5.2"
+  }
+}
