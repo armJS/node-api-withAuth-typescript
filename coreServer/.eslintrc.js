@@ -9,5 +9,8 @@ module.exports =  {
         ecmaVersion:  2018,
         sourceType:  'module',
     },
-    rules:  {},
+    rules:  {
+        '@typescript-eslint/explicit-member-accessibility': 0,
+        '@typescript-eslint/interface-name-prefix': 0,
+    },
 };

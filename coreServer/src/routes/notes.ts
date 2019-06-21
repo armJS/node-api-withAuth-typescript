@@ -1,32 +1,35 @@
 import * as express from 'express';
-import {Request, Response} from 'express';
-import NoteRepo from "../repositories/NoteRepo";
+import { Request, Response } from 'express';
+import NoteRepo from '../repositories/NoteRepo';
 
 export const router = express.Router();
 
 // GET ALL NOTES
-router.get('/', (req: Request, res: Response) => {
-    NoteRepo.list().then(noteList =>
-        res.render('index', {title: 'Notes', noteList})
-    )
+router.get('/list', (req: Request, res: Response) => {
+  NoteRepo.list().then(noteList => res.render('index', { title: 'Notes', noteList }));
 });
 
-// CREATE A NOTE
-router.post('/', (req: Request, res: Response) => {
-    res.send('OK');
+// RENDER ADD NOTE TEMPLATE
+router.get('/add', (req: Request, res: Response) => {
+  res.render('note/edit.hbs');
 });
 
-// FIND A NOTE
-router.get('/:id', (req: Request, res: Response) => {
-    res.send('OK' + req.params.id);
+// SAVE A NOTE
+router.post('/save', async (req: Request, res: Response) => {
+  try {
+    const note = await NoteRepo.create({ text: req.body.text, title: req.body.title });
+    res.redirect(`/view?id=${note._id}`);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
-// UPDATE A NOTE
-router.put('/:id', (req: Request, res: Response) => {
-    res.send('OK' + req.params.id);
+router.get('/view/:id', async (req: Request, res: Response) => {
+  try {
+    res.render('note/view', { note: await NoteRepo.findById(req.params.id) });
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
-// DELETE A NOTE
-router.delete('/:id', (req: Request, res: Response) => {
-    res.send('OK' + req.params.id);
-});
+

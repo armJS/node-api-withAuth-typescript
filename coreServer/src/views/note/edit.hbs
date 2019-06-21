@@ -1,39 +1,38 @@
-<form method="post" action="/notes/save">
-{{#if user}}
-        <div class="container-fluid">
-            {{#if docreate}}
-                <input type='hidden' name='docreate' value="create">
-            {{else}}
-                <input type='hidden' name='docreate' value="update">
-            {{/if}}
-            <div class="form-group row align-items-center">
-                <label for="noteKey" class="col-1 col-form-label">Key</label>
-                {{#if docreate }}
-                    <div class="col">
-                        <input type='text' class="form-control"
-                               placeholder="note key" name='noteKey' value=''/>
-                    </div>
-                {{else}}
-                    {{#if note }}
-                        <span class="input-group-text">{{noteKey}}</span>
-                    {{/if}}
-                    <input type='hidden' name='noteKey'
-                           value='{{#if note }}{{noteKey}}{{/if}} '/>
-                {{/if}}
-            </div>
-
-            <div class="form-group row">
-                <label for="title" class="col-1 col-form-label">Title</label>
+<form method="post" action="/notes/api">
+    <div class="container-fluid">
+        {{#if docreate}}
+            <input type='hidden' name='docreate' value="create">
+        {{else}}
+            <input type='hidden' name='docreate' value="update">
+        {{/if}}
+        <div class="form-group row align-items-center">
+            <label for="noteKey" class="col-1 col-form-label">Key</label>
+            {{#if docreate }}
                 <div class="col">
-                    <input type="text" class="form-control"
-                           id='title' name='title' placeholder="note title" value='{{#if note }}{{note.title}}{{/if}}'>
+                    <input type='text' class="form-control"
+                           placeholder="note key" name='noteKey' value=''/>
                 </div>
+            {{else}}
+                {{#if note }}
+                    <span class="input-group-text">{{_id}}</span>
+                {{/if}}
+                <input type='hidden' name='noteKey'
+                       value='{{#if note }}{{_id}}{{/if}} '/>
+            {{/if}}
+        </div>
+
+        <div class="form-group row">
+            <label for="title" class="col-1 col-form-label">Title</label>
+            <div class="col">
+                <input type="text" class="form-control"
+                       id='title' name='title' placeholder="note title" value='{{#if note }}{{note.title}}{{/if}}'>
             </div>
-            <div class="form-group row"><textarea class="form-control" name='body' rows="5">{{#if
-                    note }}{{note.body}}{{/if}}</textarea></div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div></form>
-{{else}}{{> not-logged-in }}
-{{/if}}
+        </div>
+        <div class="form-group row">
+            <textarea class="form-control" name='text' rows="5">{{#if
+                note }}{{note.text}}{{/if}}</textarea></div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
 
 </form>

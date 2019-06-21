@@ -9,7 +9,7 @@ class App {
   public app: express.Application;
   private mongoUrl: string = process.env.MONGODB_URL || 'mongodb://localhost/notes';
 
-  constructor() {
+  public constructor() {
     this.app = express();
     this.mongoSetup();
     this.config();
@@ -23,13 +23,12 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
   }
 
-  private mongoSetup(): void{
-    mongoose.connect(this.mongoUrl);
+  private mongoSetup(): void {
+    mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
   }
 
-
   private routes(): void {
-      Routes.init(this.app);
+    Routes.init(this.app);
   }
 
   private view(): void {
@@ -38,18 +37,24 @@ class App {
     this.app.set('view engine', 'hbs');
   }
 
-  private assets():void {
+  private assets(): void {
     this.app.use(express.static(path.join(__dirname, 'public')));
-    this.app.use('/assets/vendor/bootstrap', express.static(
-        path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
-    this.app.use('/assets/vendor/jquery', express.static(
-        path.join(__dirname, 'node_modules', 'jquery', 'dist')));
-    this.app.use('/assets/vendor/popper.js', express.static(
-        path.join(__dirname, 'node_modules', 'popper.js', 'dist')));
-    this.app.use('/assets/vendor/feather-icons', express.static(
-        path.join(__dirname, 'node_modules', 'feather-icons', 'dist')));
-  }
+    console.log(path.join(__dirname, 'node_modules', 'bootstrap', 'dist'));
 
+    this.app.use(
+      '/assets/vendor/bootstrap',
+      express.static(path.join(__dirname, '../node_modules', 'bootstrap', 'dist')),
+    );
+    this.app.use('/assets/vendor/jquery', express.static(path.join(__dirname, '../node_modules', 'jquery')));
+    this.app.use(
+      '/assets/vendor/popper.js',
+      express.static(path.join(__dirname, '../node_modules', 'popper.js', 'dist')),
+    );
+    this.app.use(
+      '/assets/vendor/feather-icons',
+      express.static(path.join(__dirname, '../node_modules', 'feather-icons', 'dist')),
+    );
+  }
 }
 
 export default new App().app;

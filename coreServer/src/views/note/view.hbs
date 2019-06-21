@@ -1,16 +1,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
-            {{#if note}}<h3>{{ note.title }}</h3>{{/if}}        {{#if note}}<p>{{ note.body }}</p>{{/if}}        <p>
-            Key: {{ noteKey }}</p></div>
+            {{#if note}}
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.text }}</p>
+            {{/if}}
+        </div>
     </div>
-    {{#if noteKey }}
+    {{#if note}}
         <div class="row">
             <div class="col-xs-12">
-                <div class="btn-group"><a class="btn btn-outline-dark" href="/notes/destroy?key={{noteKey}}"
-                    role="button">Delete</a>            <a class="btn btn-outline-dark"
-                                                           href="/notes/edit?key={{noteKey}}"
-                    role="button">Edit</a>        </div>
+                <div class="btn-group">
+                    <a class="btn btn-outline-dark" href="/notes/delete/?id={{note._id}}" role="button">Delete</a>
+                    <a class="btn btn-outline-dark" href="/notes/edit?id={{note._id}}" role="button">Edit</a>
+                </div>
             </div>
         </div>
     {{/if}}
