@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            {{#if note}}<h3>{{ note.title }}</h3>{{/if}}        {{#if note}}<p>{{ note.body }}</p>{{/if}}        <p>
+            Key: {{ noteKey }}</p></div>
+    </div>
+    {{#if noteKey }}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="btn-group"><a class="btn btn-outline-dark" href="/notes/destroy?key={{noteKey}}"
+                    role="button">Delete</a>            <a class="btn btn-outline-dark"
+                                                           href="/notes/edit?key={{noteKey}}"
+                    role="button">Edit</a>        </div>
+            </div>
+        </div>
+    {{/if}}
+</div>

@@ -1,0 +1,14 @@
+<form method='POST' action='/notes/delete/confirm'>
+    <div class="container-fluid">
+        {{#if user}}
+            <input type='hidden' name='notekey' value='{{#if note}}{{noteKey}}{{/if}}'>
+            <p class="form-text">Delete {{note.title}}?</p>
+            <div class="btn-group">
+                <button type="submit" value='DELETE' class="btn btn-outline-dark">DELETE</button>
+                <a class="btn btn-outline-dark" href="/notes/view?key={{#if note}}{{noteKey}}{{/if}}"
+                role="button">Cancel</a>
+            </div>
+        {{else}}
+            {{> not-logged-in }}
+        {{/if}}</div>
+</form>
