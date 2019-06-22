@@ -1,0 +1,27 @@
+html,
+body {
+    height: 100vh;
+    background-color: rgba(211, 211, 211, 0.2);
+}
+
+.container-fluid {
+    padding-top: 12px;
+}
+
+.operations {
+    display: flex;
+
+}
+
+.deleteBtn {
+    margin-right: 12px;
+}
+
+.text {
+    min-height: 250px;
+    width: 100%;
+    resize: none;
+    border-radius: 4px;
+    background-color: white;
+}
+

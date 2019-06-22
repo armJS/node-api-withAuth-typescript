@@ -32,7 +32,7 @@ class App {
   }
 
   private view(): void {
-    hbs.registerPartials(path.join(__dirname, 'views/templates'));
+    hbs.registerPartials(path.join(__dirname, 'views/partials'));
     this.app.set('views', path.join(__dirname, 'views'));
     this.app.set('view engine', 'hbs');
   }

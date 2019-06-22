@@ -1,38 +1,30 @@
-<form method="post" action="/notes/api">
+<form method="post" action="/notes/save">
     <div class="container-fluid">
         {{#if docreate}}
-            <input type='hidden' name='docreate' value="create">
+            <input type='hidden' name='operation' value="create">
         {{else}}
-            <input type='hidden' name='docreate' value="update">
+            <input type='hidden' name='operation' value="update">
         {{/if}}
-        <div class="form-group row align-items-center">
-            <label for="noteKey" class="col-1 col-form-label">Key</label>
-            {{#if docreate }}
-                <div class="col">
-                    <input type='text' class="form-control"
-                           placeholder="note key" name='noteKey' value=''/>
-                </div>
-            {{else}}
-                {{#if note }}
-                    <span class="input-group-text">{{_id}}</span>
-                {{/if}}
-                <input type='hidden' name='noteKey'
-                       value='{{#if note }}{{_id}}{{/if}} '/>
-            {{/if}}
-        </div>
-
+        {{#if note }}
+            <input type='hidden' name='id' value='{{note._id}}'/>
+        {{/if}}
         <div class="form-group row">
             <label for="title" class="col-1 col-form-label">Title</label>
             <div class="col">
-                <input type="text" class="form-control"
-                       id='title' name='title' placeholder="note title" value='{{#if note }}{{note.title}}{{/if}}'>
+                <input type="text" class="form-control" id='title' name='title' placeholder="Enter title"
+                       value='{{#if note }}{{note.title}}{{/if}}'>
             </div>
         </div>
         <div class="form-group row">
-            <textarea class="form-control" name='text' rows="5">{{#if
-                note }}{{note.text}}{{/if}}</textarea></div>
-        <button type="submit" class="btn btn-success">Submit</button>
+            <div class="col">
+                <textarea class="form-control text" placeholder="Enter text..."
+                          name='text'>{{#if note }}{{note.text}}{{/if}}</textarea>
+            </div>
+        </div>
+        {{#if note }}
+            <button class="btn btn-outline-primary" role="button">Update</button>
+        {{else}}
+            <button class="btn btn-outline-primary" role="button">Save</button>
+        {{/if}}
     </div>
-</form>
-
 </form>

@@ -1,5 +1,5 @@
 import { Application } from 'express';
-import { router as notes } from './notes';
+import { router as notes } from './notesWeb';
 import { router as notesApiRouter } from './notesApi';
 
 export class Routes {

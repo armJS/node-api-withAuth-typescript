@@ -1,20 +1,27 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12">
-            {{#if note}}
-                <h3>{{ note.title }}</h3>
-                <p>{{ note.text }}</p>
-            {{/if}}
+    <div class="form-group row">
+        <label for="title" class="col-1 col-form-label">Title</label>
+        <div class="col">
+            <input disabled type="text" class="form-control" id='title' name='title' placeholder="Enter title"
+                   value='{{#if note }}{{note.title}}{{/if}}'>
         </div>
     </div>
-    {{#if note}}
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group">
-                    <a class="btn btn-outline-dark" href="/notes/delete/?id={{note._id}}" role="button">Delete</a>
-                    <a class="btn btn-outline-dark" href="/notes/edit?id={{note._id}}" role="button">Edit</a>
-                </div>
-            </div>
+    <div class="form-group row">
+        <div class="col">
+                <textarea disabled class="form-control text" placeholder="Enter text..."
+                          name='text'>{{#if note }}{{note.text}}{{/if}}</textarea>
         </div>
-    {{/if}}
+    </div>
+    <div class="operations">
+        {{#if note}}
+            <form method="post" action="/notes/confirmDelete">
+                <input type="hidden" name="id" value="{{#if note }}{{note._id}}{{/if}}"/>
+                <button class="btn btn-outline-dark deleteBtn" role="button">Delete</button>
+            </form>
+            <form method="post" action="/notes/edit">
+                <input type="hidden" name="id" value="{{#if note }}{{note._id}}{{/if}}"/>
+                <button class="btn btn-outline-primary" role="button">Edit</button>
+            </form>
+        {{/if}}
+    </div>
 </div>
