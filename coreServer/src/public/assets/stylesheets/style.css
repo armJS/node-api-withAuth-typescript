@@ -13,6 +13,15 @@ body {
 
 }
 
+.profile {
+    margin-left: 32px;
+    color: white;
+}
+
+.btn + .btn {
+    margin-left: 16px;
+}
+
 .deleteBtn {
     margin-right: 12px;
 }

@@ -4,7 +4,7 @@ import Note from '../models/Note';
 class Web {
   public static async list(req: Request, res: Response): Promise<void> {
     try {
-      res.render('index', { title: 'Notes', noteList: await Note.find({}) });
+      res.render('index', { title: 'Notes', noteList: await Note.find({}), user: req.user });
     } catch (e) {
       res.sendStatus(500);
     }
@@ -14,7 +14,7 @@ class Web {
     try {
       const note = await Note.findById({ _id: req.params.id });
       if (note) {
-        res.render('note/view', { note });
+        res.render('note/view', { note, user: req.user });
       } else {
         // TODO:
       }
