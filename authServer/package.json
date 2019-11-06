@@ -14,7 +14,7 @@
     "fs-extra": "^8.0.1",
     "js-yaml": "^3.13.1",
     "restify": "^8.3.3",
-    "sequelize": "^5.8.9",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.0.9",
     "winston": "^3.2.1"
   },
